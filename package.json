@@ -1,0 +1,23 @@
+{
+  "name": "L7",
+  "description": "An HL7 query language.",
+  "keywords": ["hl7", "query", "server"],
+  "author": {
+    "name": "Rowan Crawford",
+    "email": "wombleton@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wombleton/L7"
+  },
+  "version": "0.0.2",
+  "dependencies": {
+    "coffee-script": "latest",
+    "pegjs": "latest",
+    "underscore": "latest"
+  },
+  "devDependencies": {
+    "should": "latest",
+    "vows": "latest"
+  }
+}
