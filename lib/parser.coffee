@@ -48,7 +48,7 @@ class Message
         else
           val = fieldEl?.val()
       else
-        componentEl = fieldEl.getComponent(component)
+        componentEl = fieldEl?.getComponent(component)
         if _.isUndefined(componentEl)
           val = null
         else

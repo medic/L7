@@ -75,6 +75,8 @@ vows.describe('parser parsing').addBatch(
       should.strictEqual(msg.query('PID|1000'), null)
     'selector total miss should return null': (msg) ->
       should.strictEqual(msg.query('QQQ|0'), null)
+    'selector total miss with component should return null': (msg) ->
+      should.strictEqual(msg.query('QQQ|0^5'), null)
   'error handling for translate':
     topic: ->
       parser.parse(message)
