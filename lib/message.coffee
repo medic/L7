@@ -1,5 +1,6 @@
 Segment = require('./Segment')
 HeadSegment = require('./HeadSegment')
+Ack = require('./Ack')
 
 queryparser = require('../definitions/query')
 
@@ -60,7 +61,7 @@ class Message
   acknowledge: (substitutions) ->
     @respond('AA', substitutions)
   respond: (code, substitutions) ->
-
+    new Ack(@, code, substitutions).toString()
   translate: (map) ->
     _.reduce(map, (memo, val, key) =>
       memo[key] = @query(val)

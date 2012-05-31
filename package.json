@@ -14,7 +14,8 @@
   "dependencies": {
     "coffee-script": "latest",
     "pegjs": "latest",
-    "underscore": "latest"
+    "underscore": "latest",
+    "underscore.string": "latest"
   },
   "devDependencies": {
     "should": "latest",
