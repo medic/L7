@@ -39,7 +39,7 @@ class Message
           val = null
         else
           val = componentEl.val()
-      if toDate
+      if val and toDate
         match = val.match(/(\d{4})(\d{2})(\d{2})(\d{2})?(\d{2})?(\d{2})?/)
         if match
           [datestring, year, month, day, hours, minutes, seconds] = match
@@ -53,6 +53,14 @@ class Message
         val
     catch e
       throw new Error("Bad selector '#{query}'")
+  reject: (substitutions) ->
+    @respond('AR', substitutions)
+  error: (substitutions) ->
+    @respond('AE', substitutions)
+  acknowledge: (substitutions) ->
+    @respond('AA', substitutions)
+  respond: (code, substitutions) ->
+
   translate: (map) ->
     _.reduce(map, (memo, val, key) =>
       memo[key] = @query(val)

@@ -32,25 +32,25 @@ vows.describe('parser parsing').addBatch(
     topic: ->
       parser.parse(message).getSegment('MSH')
     'get value': (msh) ->
-      msh.getValue(10).should.eql('1233A6')
+      msh.getValue(10).should.eql('4676115')
     'get field': (msh) ->
       msh.getField(3).should.have.lengthOf(3)
     'get value of field': (msh) ->
-      msh.getField(3).val().should.eql('PM^PM^')
+      msh.getField(3).val().should.eql('REG^REG^')
     'get component of field': (msh) ->
-      msh.getField(3).getComponent(0).val().should.eql('PM')
+      msh.getField(3).getComponent(0).val().should.eql('REG')
     'get subcomponent of component': (msh) ->
-      msh.getField(9).getComponent(0).getSubcomponent(1).val().should.eql('U')
-      msh.getField(9).getComponent(0).val().should.eql('SI&U')
+      msh.getField(8).getComponent(0).getSubcomponent(1).val().should.eql('U')
+      msh.getField(8).getComponent(0).val().should.eql('SI&U')
   'query definition':
     topic: ->
       parser.parse(message)
     'basic query': (msg) ->
-      msg.query('PID|2').should.eql('7779')
+      msg.query('PID|3').should.eql('353966')
     'component query': (msg) ->
-      msg.query('PID|5^0').should.eql('McTest')
+      msg.query('PID|5^0').should.eql('SMITH')
     'querying segment with a number in it': (msg) ->
-      msg.query('PV1|1').should.eql('1')
+      msg.query('PV1|2').should.eql('O')
   'error handling for queries':
     topic: ->
       parser.parse(message)
@@ -102,12 +102,12 @@ vows.describe('parser parsing').addBatch(
     'date selector should return a date': (msg) ->
       result = msg.query('MSH@7')
       _.isDate(result).should.be.true
-      result.getFullYear().should.eql(2006)
-      result.getMonth().should.eql(11) # months offset by 1
-      result.getDate().should.eql(6)
-      result.getHours().should.eql(19)
-      result.getMinutes().should.eql(22)
-      result.getSeconds().should.eql(56)
+      result.getFullYear().should.eql(2005)
+      result.getMonth().should.eql(8) # months offset by 1
+      result.getDate().should.eql(12)
+      result.getHours().should.eql(11)
+      result.getMinutes().should.eql(5)
+      result.getSeconds().should.eql(38)
       result.getMilliseconds().should.eql(0)
     'date selector which does not select date should return null': (msg) ->
       (->
@@ -115,21 +115,23 @@ vows.describe('parser parsing').addBatch(
       ).should.not.throw()
       should.strictEqual(null, msg.query('MSH@8'))
     'date selector works for components': (msg) ->
-      result = msg.query('SCH|11@3')
+      result = msg.query('SCH|11@1')
       _.isDate(result).should.be.true
-      result.getFullYear().should.eql(2006)
-      result.getMonth().should.eql(11) # months offset by 1
-      result.getDate().should.eql(29)
+      result.getFullYear().should.eql(2005)
+      result.getMonth().should.eql(8) # months offset by 1
+      result.getDate().should.eql(12)
       result.getHours().should.eql(11)
-      result.getMinutes().should.eql(20)
-      result.getSeconds().should.eql(0)
+      result.getMinutes().should.eql(4)
+      result.getSeconds().should.eql(30)
       result.getMilliseconds().should.eql(0)
+    'date selector returns null for missing dates': (msg) ->
+      should.strictEqual(msg.query('SCH|11@1000'), null)
     'date selector accepts partial dates': (msg) ->
       result = msg.query('PID@7')
       _.isDate(result).should.be.true
-      result.getFullYear().should.eql(1967)
-      result.getMonth().should.eql(4) # months offset by 1
-      result.getDate().should.eql(2)
+      result.getFullYear().should.eql(1982)
+      result.getMonth().should.eql(6) # months offset by 1
+      result.getDate().should.eql(7)
       result.getHours().should.eql(0)
       result.getMinutes().should.eql(0)
       result.getSeconds().should.eql(0)
@@ -141,15 +143,13 @@ vows.describe('parser parsing').addBatch(
       msg.translate(
         familyName: 'PID|5^0'
         firstName: 'PID|5^1'
-      ).should.eql(familyName: 'McTest', firstName: 'Test')
+      ).should.eql(familyName: 'SMITH', firstName: 'JOHN')
 ).export(module)
 
 message = """
-MSH|^~\&|PM^PM^||eClinicalWorks^eClinicalWorks^||20061206192256||SI&U^S12|1233A6|P|2.3||||NE
-SCH|72919|72919|||||Cough and Cold |Annual Visit|20|m|^^1200^20061229112000^20061229114000||||||||||||||Arrived^Checked in
-PID|1|7779|||McTest^Test^||19670502|F||White|123 HIGH WAY^^Westboro^MA^01581||5085085085|||Married||32801465|999999999
-PV1|1||110011||||C9999^TEST^DOCTOR^L|G8888^REF^PHY|||||||||||38808
-AIG|1||Dr Hparser Id^Test, Doctor S||||
-AIL|1||Facility Hparser Id^Facility||||
-AIP|1||ResourceId^Resource Last Name^Resource First Name|||20020108150000|||10|m||
+MSH|^~\&|REG^REG^|XYZ||XYZ|20050912110538|SI&U|SIU^S12|4676115|P|2.3
+PID|||353966||SMITH^JOHN^^^^||19820707|F||C|108 MAIN STREET ^^ANYTOWN^TX^77777^^|HARV|(512)555-0170|||||00362103|123-45-6789||||||||||||
+SCH|1||||||NEW||||20050912110230^20050912110430||||||||||||||||||^^^^^^||3|
+PV1||O|SEROT|3|||1284^JOHNSON^MIKE^S.^^MD~|||SEROT||||1|||1284^JOHNSON^MIKE^S.^^ MD|SERIES|787672|B|||||||||N||||||||||||A|||20050912110230|||||| PV2|||HAND BRACE NEEDS REPAIRED|||||||||||20050912||||||||||A||20050725|||||O||||||
+NK1|0001|HULK^INCREDIBLE|M|123 FAKE ST^^OUTLAND^^00000|123456789||
 """
