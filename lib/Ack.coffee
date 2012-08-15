@@ -21,7 +21,7 @@ class Ack
     date = @formatDate(@subs.dateTimeOfMessage)
 
     """
-    MSH|^~\&|#{sendingApplication}|#{sendingFacility}|#{receivingApplication}|#{receivingFacility}|#{date}||ACK^O01|#{messageControlId}|P|2.3
+    MSH|^~\\&|#{sendingApplication}|#{sendingFacility}|#{receivingApplication}|#{receivingFacility}|#{date}||ACK^O01|#{messageControlId}|P|2.3
     MSA|#{@code}|#{messageControlId}#{if textMessage then "|#{textMessage}" else ''}
     """
 

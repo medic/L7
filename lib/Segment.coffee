@@ -11,5 +11,9 @@ class Segment
     @fields[index]?.val() || ''
   getField: (index) ->
     @fields[index]
+  toString: ->
+    _.map(@fields, (field) ->
+      field.toString()
+    ).join('|')
 
 module.exports = Segment

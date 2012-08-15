@@ -15,9 +15,7 @@ vows.describe('parser parsing').addBatch(
       topic.parse(77).should.have.property('error')
     'when parsing expect an MSH header': (topic) ->
       result = topic.parse('qq')
-      result.should.have.property('errors').with.lengthOf(1)
-      result.errors[0].should.equal('Missing MSH segment')
-      result.should.have.property('valid', false)
+      result.should.have.property('error')
   'msh handling':
     topic: -> parser.parse(message)
     'special MSH handling': (message) ->
@@ -124,7 +122,7 @@ vows.describe('parser parsing').addBatch(
 ).export(module)
 
 message = """
-MSH|^~\&|REG^REG^|XYZ||XYZ|20050912110538|SI&U|SIU^S12|4676115|P|2.3
+MSH|^~\\&|REG^REG^|XYZ||XYZ|20050912110538|SI&U|SIU^S12|4676115|P|2.3
 PID|||353966||SMITH^JOHN^^^^||19820707|F||C|108 MAIN STREET ^^ANYTOWN^TX^77777^^|HARV|(512)555-0170|||||00362103|123-45-6789||||||||||||
 SCH|1||||||NEW||||20050912110230^20050912110430||||||||||||||||||^^^^^^||3|
 PV1||O|SEROT|3|||1284^JOHNSON^MIKE^S.^^MD~|||SEROT||||1|||1284^JOHNSON^MIKE^S.^^ MD|SERIES|787672|B|||||||||N||||||||||||A|||20050912110230|||||| PV2|||HAND BRACE NEEDS REPAIRED|||||||||||20050912||||||||||A||20050725|||||O||||||

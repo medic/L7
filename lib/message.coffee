@@ -22,7 +22,7 @@ class Message
       segment.name is name
     )
   validate: ->
-    @errors.push('Missing MSH segment') unless msh?.name is 'MSH'
+    @errors.push('Missing MSH segment') unless @segments[0]?.name is 'MSH'
     @valid = @errors.length is 0
   query: (query) ->
     try
@@ -68,6 +68,10 @@ class Message
       memo
     , {})
     _.extend(result, override)
+  toString: ->
+    _.map(@segments, (segment) ->
+      segment.toString()
+    ).join('\n')
 
 module.exports = Message
 

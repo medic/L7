@@ -3,8 +3,13 @@ definition = """
 message
   = segments
 segments
-  = head:segment tail:(newline segment:segment { return segment; })* {
+  = head:msh tail:(newline segment:segment { return segment; })* {
     tail.unshift(head);
+    return tail;
+  }
+msh
+  = "MSH|^~\\\\" "&" tail:(field_separator field:field { return field; })* {
+    tail.unshift([['MSH']], [['^~\\\\&']]);
     return tail;
   }
 segment
@@ -28,8 +33,6 @@ subcomponent
   }
 char =
   .
-escape_character
-  = "\\\\"
 field_separator
   = "|"
 component_separator
