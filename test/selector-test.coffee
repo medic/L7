@@ -77,21 +77,6 @@ vows.describe('parser parsing').addBatch(
       should.strictEqual(msg.query('QQQ|0'), null)
     'selector total miss with component should return null': (msg) ->
       should.strictEqual(msg.query('QQQ|0^5'), null)
-  'error handling for translate':
-    topic: ->
-      parser.parse(message)
-    'bad selector throws an error': (msg) ->
-      (->
-        msg.translate(fake: 'MOONBAT|MOONBAT')
-      ).should.throw()
-      try
-        msg.translate(fake: 'MOONBAT*MOONBAT')
-      catch e
-        e.message.should.eql("Bad selector 'MOONBAT*MOONBAT'")
-      try
-        msg.translate(fake: 'MOONBAT|MOONBAT')
-      catch e
-        e.message.should.eql("Bad selector 'MOONBAT|MOONBAT'")
   'date autoboxing':
     topic: ->
       parser.parse(message)
@@ -136,14 +121,6 @@ vows.describe('parser parsing').addBatch(
       result.getMinutes().should.eql(0)
       result.getSeconds().should.eql(0)
       result.getMilliseconds().should.eql(0)
-  'translate':
-    topic: ->
-      parser.parse(message)
-    'translate': (msg) ->
-      msg.translate(
-        familyName: 'PID|5^0'
-        firstName: 'PID|5^1'
-      ).should.eql(familyName: 'SMITH', firstName: 'JOHN')
 ).export(module)
 
 message = """

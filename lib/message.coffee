@@ -62,11 +62,12 @@ class Message
     @respond('AA', substitutions)
   respond: (code, substitutions) ->
     new Ack(@, code, substitutions).toString()
-  translate: (map) ->
-    _.reduce(map, (memo, val, key) =>
+  translate: (map, override) ->
+    result = _.reduce(map, (memo, val, key) =>
       memo[key] = @query(val)
       memo
     , {})
+    _.extend(result, override)
 
 module.exports = Message
 
