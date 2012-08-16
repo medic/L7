@@ -1,6 +1,6 @@
 {
   "name": "L7",
-  "description": "An HL7 query language.",
+  "description": "An HL7 query language and message manipulator.",
   "keywords": ["hl7", "query", "server"],
   "author": {
     "name": "Rowan Crawford",

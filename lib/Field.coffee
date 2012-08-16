@@ -5,12 +5,13 @@ class Field extends Composed
   constructor: (@raw) ->
     @length = @raw.length
     @assign(Component)
+    return
   delimiter: '^'
   getComponent: (index) ->
     @getPart(index)
-  toString: ->
-    _.map(@raw, (component) ->
-      component.join('&')
-    ).join('^')
+  setVal: (values) ->
+    @raw = _.map(values, (value) ->
+      [value]
+    )
 
 module.exports = Field

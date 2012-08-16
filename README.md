@@ -1,7 +1,7 @@
 L7
 ======
 
-A simple HL7 query language.
+A simple HL7 query language and message manipulator.
 
 Usage
 ----
@@ -25,6 +25,10 @@ And the javascript:
       familyName: 'PID|5^0'
       firstName: 'PID|5^1'
     }) // { "familyName": "McTest", "firstName": "Test" }
+
+    message.toString() // returns original message
+    message.replace('PID|5', 'McFake', 'Firstname'); // replaces the values in the message with the supplied ones
+    message.replace('PID|11^0', '123 Fake Street'); // can replace just one element
 
 Installation
 ------------

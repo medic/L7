@@ -72,6 +72,19 @@ class Message
     _.map(@segments, (segment) ->
       segment.toString()
     ).join('\n')
+  replace: (query, replacements...) ->
+    try
+      { component, field, segment, toDate } = queryparser.parse(query)
 
+      fieldEl = @getSegment(segment)?.getField(field)
+      if _.isNull(component)
+        unless _.isUndefined(fieldEl)
+          fieldEl.val(replacements)
+      else
+        componentEl = fieldEl?.getComponent(component)
+        unless _.isUndefined(componentEl)
+          componentEl.val(replacements)
+    catch e
+      throw new Error("Bad selector '#{query}'")
 module.exports = Message
 
