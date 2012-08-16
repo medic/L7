@@ -3,10 +3,10 @@ should = require('should')
 
 parser = require('..')
 
-vows.describe('responding').addBatch(
-  'basic response handling':
+vows.describe('to string').addBatch(
+  'basic test':
     topic: -> parser.parse(hl7)
-    'response returns something': (msg) ->
+    'to string mirrors original': (msg) ->
       msg.toString().should.eql(hl7)
 ).export(module)
 
