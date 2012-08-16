@@ -10,7 +10,7 @@
     "type": "git",
     "url": "https://github.com/wombleton/L7"
   },
-  "version": "0.0.5",
+  "version": "0.0.6",
   "dependencies": {
     "coffee-script": "latest",
     "pegjs": "latest",

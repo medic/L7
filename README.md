@@ -30,6 +30,8 @@ And the javascript:
     message.replace('PID|5', 'McFake', 'Firstname'); // replaces the values in the message with the supplied ones
     message.replace('PID|11^0', '123 Fake Street'); // can replace just one element
 
+    message.remove('PV1'); // removes the PV1 segment if it exists
+
 Installation
 ------------
 

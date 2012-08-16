@@ -86,5 +86,9 @@ class Message
           componentEl.val(replacements)
     catch e
       throw new Error("Bad selector '#{query}'")
+  remove: (name) ->
+    @segments = _.reject(@segments, (segment) ->
+      segment.name is name
+    )
 module.exports = Message
 
