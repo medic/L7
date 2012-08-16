@@ -31,6 +31,8 @@ And the javascript:
     message.replace('PID|11^0', '123 Fake Street'); // can replace just one element
 
     message.remove('PV1'); // removes the PV1 segment if it exists
+    message.remove('IN1', 'IN2'); // removes the IN1 and IN2 segments if they exists
+    message.remove('Z*'); // remove all "Z" segements
 
 Installation
 ------------

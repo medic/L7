@@ -86,9 +86,11 @@ class Message
           componentEl.val(replacements)
     catch e
       throw new Error("Bad selector '#{query}'")
-  remove: (name) ->
+  remove: (names...) ->
     @segments = _.reject(@segments, (segment) ->
-      segment.name is name
+      _.find(names, (name) ->
+        ///^#{name.replace('*', '.+')}$///.test(segment.name)
+      )
     )
 module.exports = Message
 
