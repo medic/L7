@@ -8,7 +8,8 @@ messageparser = require('../definitions/message')
 module.exports =
   parse: (s) ->
     try
-      new Message(messageparser.parse(s))
+      { message, control_characters } = messageparser.parse(s)
+      new Message(message, control_characters)
     catch e
       { column, line, message } = e
       return {

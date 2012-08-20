@@ -2,11 +2,11 @@ Composed = require('./Composed')
 Component = require('./Component')
 
 class Field extends Composed
-  constructor: (@raw) ->
+  constructor: (@raw, @control) ->
     @length = @raw.length
     @assign(Component)
+    @delimiter = @control.components
     return
-  delimiter: '^'
   getComponent: (index) ->
     @getPart(index)
   setVal: (values) ->

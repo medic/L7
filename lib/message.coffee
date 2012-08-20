@@ -5,15 +5,15 @@ Ack = require('./Ack')
 queryparser = require('../definitions/query')
 
 class Message
-  constructor: (raw) ->
+  constructor: (raw, control) ->
     [msh, segments...] = raw
     @errors = []
     @segments = []
 
     # all messages have a head segment to start with; it's handled a bit differently
-    @segments.push(new HeadSegment(msh))
+    @segments.push(new HeadSegment(msh, control))
     _.each(segments, (segment) ->
-      @segments.push(new Segment(segment))
+      @segments.push(new Segment(segment, control))
     , @)
     @validate()
     return
@@ -93,4 +93,3 @@ class Message
       )
     )
 module.exports = Message
-
