@@ -1,5 +1,6 @@
 Field = require('./Field')
 Segment = require('./Segment')
+_ = require('underscore')
 
 class HeadSegment extends Segment
   constructor: (segment, @control) ->

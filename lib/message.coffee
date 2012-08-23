@@ -1,6 +1,7 @@
 Segment = require('./Segment')
 HeadSegment = require('./HeadSegment')
 Ack = require('./Ack')
+_ = require('underscore')
 
 queryparser = require('../definitions/query')
 

@@ -1,3 +1,4 @@
+_ = require('underscore')
 Field = require('./Field')
 
 class Segment

@@ -1,5 +1,6 @@
 vows = require('vows')
 should = require('should')
+_ = require('underscore')
 
 parser = require('..')
 

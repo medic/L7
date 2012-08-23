@@ -1,3 +1,4 @@
+_ = require('underscore')
 Composed = require('./Composed')
 Component = require('./Component')
 
