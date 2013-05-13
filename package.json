@@ -1,7 +1,11 @@
 {
   "name": "L7",
   "description": "An HL7 query language and message manipulator.",
-  "keywords": ["hl7", "query", "server"],
+  "keywords": [
+    "hl7",
+    "query",
+    "server"
+  ],
   "author": {
     "name": "Rowan Crawford",
     "email": "wombleton@gmail.com"
@@ -12,13 +16,13 @@
   },
   "version": "0.0.9",
   "dependencies": {
-    "coffee-script": "latest",
-    "pegjs": "latest",
-    "underscore": "latest",
-    "underscore.string": "latest"
+    "coffee-script": "~1.6.2",
+    "pegjs": "~0.7.0",
+    "underscore": "~1.4.4",
+    "underscore.string": "~2.3.1"
   },
   "devDependencies": {
-    "should": "latest",
-    "vows": "latest"
+    "should": "~1.2.2",
+    "vows": "~0.7.0"
   }
 }
