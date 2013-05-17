@@ -1,5 +1,4 @@
 var _ = require('underscore'),
-    moment = require('moment'),
     parser = require('./lib/parser');
 
 module.exports = {
@@ -11,8 +10,5 @@ module.exports = {
                 error: "Expected an HL7 message but got '" + s + "'"
             }
         }
-    },
-    formatDate: function(d) {
-        return moment(d).format('YYYYMMDDHHmmss');
     }
 };
