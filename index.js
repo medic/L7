@@ -1,5 +1,6 @@
 var _ = require('underscore'),
     parser = require('./lib/parser'),
+    dateFormat = require('./lib/date-format'),
     Ack = require('./lib/Ack');
 
 module.exports = {
@@ -26,5 +27,8 @@ module.exports = {
     },
     ack: function(options) {
         return new Ack(options);
+    },
+    formatDate: function(d) {
+        return dateFormat(d);
     }
 };
