@@ -15,8 +15,10 @@
     "url": "https://github.com/wombleton/L7"
   },
   "version": "0.0.10",
+  "scripts": {
+      "test": "vows"
+  },
   "dependencies": {
-    "coffee-script": "~1.6.2",
     "pegjs": "~0.7.0",
     "underscore": "~1.4.4",
     "underscore.string": "~2.3.1"
