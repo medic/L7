@@ -1,5 +1,6 @@
 var _ = require('underscore'),
-    parser = require('./lib/parser');
+    parser = require('./lib/parser'),
+    Ack = require('./lib/Ack');
 
 module.exports = {
     parse: function(s) {
@@ -10,5 +11,8 @@ module.exports = {
                 error: "Expected an HL7 message but got '" + s + "'"
             }
         }
+    },
+    ack: function(options) {
+        return new Ack(options);
     }
 };
