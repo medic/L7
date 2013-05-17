@@ -12,6 +12,18 @@ module.exports = {
             }
         }
     },
+    reject: function(options) {
+        options = options || {};
+        options.code = 'AR';
+
+        return module.exports.ack(options);
+    },
+    error: function(options) {
+        options = options || {};
+        options.code = 'AE';
+
+        return module.exports.ack(options);
+    },
     ack: function(options) {
         return new Ack(options);
     }
