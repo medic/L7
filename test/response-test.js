@@ -70,10 +70,10 @@
     'overridden response senders and receivers': {
       topic: function() {
         return parser.parse(parser.parse(hl7).respond('AA', {
-          sendingApplication: 'weasel',
-          sendingFacility: 'town',
-          receivingApplication: 'stoat',
-          receivingFacility: 'village'
+          sendingApplication: 'stoat',
+          sendingFacility: 'village',
+          receivingApplication: 'weasel',
+          receivingFacility: 'town'
         }));
       },
       'should apply overrides': function(response) {
@@ -111,8 +111,8 @@
       topic: function() {
         return parser.parse(parser.parse(hl7).acknowledge());
       },
-      'no text message means no MSA|3 field': function(response) {
-        return should.strictEqual(response.query('MSA|3'), null);
+      'no text message means empty MSA|3 field': function(response) {
+        return should.strictEqual(response.query('MSA|3'), '');
       }
     },
     'adding text message': {
