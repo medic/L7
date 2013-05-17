@@ -1,5 +1,4 @@
-var cs = require('coffee-script'),
-    _ = require('underscore'),
+var _ = require('underscore'),
     _s = require('underscore.string'),
     parser = require('./lib/parser');
 
