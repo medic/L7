@@ -2,10 +2,11 @@ var build,
     cache,
     definition,
     fs = require('fs'),
+    path = require('path'),
     _ = require('underscore'),
     pegjs = require('pegjs');
 
-definition = fs.readFileSync('./definitions/message.pegjs', 'utf8');
+definition = fs.readFileSync(path.join(__dirname, 'message.pegjs'), 'utf8');
 
 build = function(options) {
     return pegjs.buildParser(_.template(definition, options));
