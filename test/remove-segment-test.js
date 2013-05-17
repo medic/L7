@@ -18,7 +18,7 @@
 
         msg = parser.parse(hl7);
         msg.remove('NK1');
-        return msg.toString().should.eql(hl7.replace(/\nNK1.+/, ''));
+        return msg.toString().should.eql(hl7.replace(/\rNK1.+/, ''));
       },
       'removing a segment which does not exist is fine': function(hl7) {
         var msg;
@@ -32,18 +32,18 @@
 
         msg = parser.parse(hl7);
         msg.remove('PV1', 'NK1');
-        return msg.toString().should.eql(hl7.replace(/\nPV1.+/, '').replace(/\nNK1.+/, ''));
+        return msg.toString().should.eql(hl7.replace(/\rPV1.+/, '').replace(/\rNK1.+/, ''));
       },
       'remove matched segments': function(hl7) {
         var msg;
 
         msg = parser.parse(hl7);
         msg.remove('ZK*', 'NK1');
-        return msg.toString().should.eql(hl7.replace(/\nZK.+/g, '').replace(/\nNK1.+/, ''));
+        return msg.toString().should.eql(hl7.replace(/\rZK.+/g, '').replace(/\rNK1.+/, ''));
       }
     }
   })["export"](module);
 
-  hl7 = "MSH|^~\\&|REG^REG^|XYZ|GOBLET|ZYX|20050912110538|SI&U|SIU^S12|4676115|P|2.3\nPID|||353966||SMITH^JOHN^^^^||19820707|F||C|108 MAIN STREET ^^ANYTOWN^TX^77777^^|HARV|(512)555-0170|||||00362103|123-45-6789||||||||||||\nSCH|1||||||NEW||||20050912110230^20050912110430||||||||||||||||||^^^^^^||3|\nPV1||O|SEROT|3|||1284^JOHNSON^MIKE^S.^^MD~|||SEROT||||1|||1284^JOHNSON^MIKE^S.^^ MD|SERIES|787672|B|||||||||N||||||||||||A|||20050912110230|||||| PV2|||HAND BRACE NEEDS REPAIRED|||||||||||20050912||||||||||A||20050725|||||O||||||\nNK1|0001|HULK^INCREDIBLE|M|123 FAKE ST^^OUTLAND^^00000|123456789||\nZK1|0001|HULK^INCREDIBLE|M|123 FAKE ST^^OUTLAND^^00000|123456789||\nZK2|0001|HULK^INCREDIBLE|M|123 FAKE ST^^OUTLAND^^00000|123456789||\nZT2|0001|HULK^INCREDIBLE|M|123 FAKE ST^^OUTLAND^^00000|123456789||";
+  hl7 = "MSH|^~\\&|REG^REG^|XYZ|GOBLET|ZYX|20050912110538|SI&U|SIU^S12|4676115|P|2.3\rPID|||353966||SMITH^JOHN^^^^||19820707|F||C|108 MAIN STREET ^^ANYTOWN^TX^77777^^|HARV|(512)555-0170|||||00362103|123-45-6789||||||||||||\rSCH|1||||||NEW||||20050912110230^20050912110430||||||||||||||||||^^^^^^||3|\rPV1||O|SEROT|3|||1284^JOHNSON^MIKE^S.^^MD~|||SEROT||||1|||1284^JOHNSON^MIKE^S.^^ MD|SERIES|787672|B|||||||||N||||||||||||A|||20050912110230|||||| PV2|||HAND BRACE NEEDS REPAIRED|||||||||||20050912||||||||||A||20050725|||||O||||||\rNK1|0001|HULK^INCREDIBLE|M|123 FAKE ST^^OUTLAND^^00000|123456789||\rZK1|0001|HULK^INCREDIBLE|M|123 FAKE ST^^OUTLAND^^00000|123456789||\rZK2|0001|HULK^INCREDIBLE|M|123 FAKE ST^^OUTLAND^^00000|123456789||\rZT2|0001|HULK^INCREDIBLE|M|123 FAKE ST^^OUTLAND^^00000|123456789||";
 
 }).call(this);
