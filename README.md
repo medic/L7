@@ -13,6 +13,7 @@ Given HL7:
     SCH|1||||||NEW||||20050912110230^20050912110430||||||||||||||||||^^^^^^||3|
     PV1||O|SEROT|3|||1284^JOHNSON^MIKE^S.^^MD~|||SEROT||||1|||1284^JOHNSON^MIKE^S.^^ MD|SERIES|787672|B|||||||||N||||||||||||A|||20050912110230|||||| PV2|||HAND BRACE NEEDS REPAIRED|||||||||||20050912||||||||||A||20050725|||||O||||||
     NK1|0001|HULK^INCREDIBLE|M|123 FAKE ST^^OUTLAND^^00000|123456789||
+    NK1|0002|HULK^DEBATEABLE|M|122 FAKE ST^^OUTLAND^^00000|123456789||
 
 And the javascript:
 
@@ -20,6 +21,8 @@ And the javascript:
 
     message = parser.parse(hl7)
     version = message.query('MSH|12') // 2.3
+    kinAddresses = message.query('NK1[4]') // ['123 FAKE ST^^OUTLAND^^00000', '122 FAKE ST^^OUTLAND^^00000']
+    kinStreets = message.query('NK1|4[0]') // ['123 FAKE ST', '122 FAKE ST']
 
     name = message.translate({
       familyName: 'PID|5^0'
