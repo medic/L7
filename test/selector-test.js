@@ -39,7 +39,7 @@
         var msh;
 
         should.exist(message);
-        msh = message.getSegment('MSH');
+        msh = message.getPart('MSH');
         should.exist(msh);
         msh.name.should.eql('MSH');
         msh.should.have.property('getValue');
@@ -49,23 +49,23 @@
     },
     'segments': {
       topic: function() {
-        return parser.parse(message).getSegment('MSH');
+        return parser.parse(message).getPart('MSH');
       },
       'get value': function(msh) {
         return msh.getValue(10).should.eql('4676115');
       },
       'get field': function(msh) {
-        return msh.getField(3).should.have.lengthOf(3);
+        return msh.getPart(3).should.have.lengthOf(3);
       },
       'get value of field': function(msh) {
-        return msh.getField(3).val().should.eql('REG^REG^');
+        return msh.getPart(3).val().should.eql('REG^REG^');
       },
       'get component of field': function(msh) {
-        return msh.getField(3).getComponent(0).val().should.eql('REG');
+        return msh.getPart(3).getPart(0).val().should.eql('REG');
       },
       'get subcomponent of component': function(msh) {
-        msh.getField(8).getComponent(0).getSubcomponent(1).val().should.eql('U');
-        return msh.getField(8).getComponent(0).val().should.eql('SI&U');
+        msh.getPart(8).getPart(0).getPart(1).val().should.eql('U');
+        return msh.getPart(8).getPart(0).val().should.eql('SI&U');
       }
     },
     'query definition': {
@@ -87,23 +87,19 @@
         return parser.parse(message);
       },
       'bad selector throws an error': function(msg) {
-        var e;
-
-        (function() {
-          return msg.query('MOONBAT|MOONBAT');
-        }).should["throw"]();
-        try {
-          msg.query('MOONBAT*MOONBAT');
-        } catch (_error) {
-          e = _error;
-          e.message.should.eql("Bad selector 'MOONBAT*MOONBAT'");
-        }
-        try {
-          return msg.query('MOONBAT|MOONBAT');
-        } catch (_error) {
-          e = _error;
-          return e.message.should.eql("Bad selector 'MOONBAT|MOONBAT'");
-        }
+          (function() {
+              msg.query('MOONBAT|MOONBAT');
+          }).should["throw"]();
+          try {
+              msg.query('MOONBAT*MOONBAT');
+          } catch (e) {
+              e.message.indexOf("Bad selector 'MOONBAT*MOONBAT'").should.eql(0);
+          }
+          try {
+              msg.query('MOONBAT|MOONBAT');
+          } catch (e) {
+              e.message.indexOf("Bad selector 'MOONBAT|MOONBAT'").should.eql(0);
+          }
       }
     },
     'querying for elements that are not there': {
