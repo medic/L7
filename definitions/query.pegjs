@@ -1,4 +1,18 @@
 query =
+  segment:segment '|' field:ref '[' component:ref ']' {
+    return {
+        repeat: true,
+        selectors: [segment, field, component]
+    };
+  }
+  /
+  segment:segment '[' field:ref ']' {
+    return {
+        repeat: true,
+        selectors: [segment, field]
+    };
+  }
+  /
   segment:segment toDate:field_selector field:field {
     return {
       toDate: field.toDate || toDate,
