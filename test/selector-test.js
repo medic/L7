@@ -87,23 +87,19 @@
         return parser.parse(message);
       },
       'bad selector throws an error': function(msg) {
-        var e;
-
-        (function() {
-          return msg.query('MOONBAT|MOONBAT');
-        }).should["throw"]();
-        try {
-          msg.query('MOONBAT*MOONBAT');
-        } catch (_error) {
-          e = _error;
-          e.message.should.eql("Bad selector 'MOONBAT*MOONBAT'");
-        }
-        try {
-          return msg.query('MOONBAT|MOONBAT');
-        } catch (_error) {
-          e = _error;
-          return e.message.should.eql("Bad selector 'MOONBAT|MOONBAT'");
-        }
+          (function() {
+              msg.query('MOONBAT|MOONBAT');
+          }).should["throw"]();
+          try {
+              msg.query('MOONBAT*MOONBAT');
+          } catch (e) {
+              e.message.indexOf("Bad selector 'MOONBAT*MOONBAT'").should.eql(0);
+          }
+          try {
+              msg.query('MOONBAT|MOONBAT');
+          } catch (e) {
+              e.message.indexOf("Bad selector 'MOONBAT|MOONBAT'").should.eql(0);
+          }
       }
     },
     'querying for elements that are not there': {
