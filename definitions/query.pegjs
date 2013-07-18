@@ -2,9 +2,7 @@ query =
   segment:segment toDate:field_selector field:field {
     return {
       toDate: field.toDate || toDate,
-      segment: segment,
-      field: field.field,
-      component: field.component
+      selectors: [segment].concat(field.selectors)
     };
   }
 
@@ -12,15 +10,13 @@ field =
   field:ref toDate:component_selector component:ref {
     return {
       toDate: toDate,
-      field:field,
-      component: component
+      selectors: [field, component]
     };
   }
   /
   field:ref {
     return {
-      field: field,
-      component: null
+      selectors: [field]
     };
   }
 
