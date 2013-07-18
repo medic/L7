@@ -27,7 +27,7 @@
           });
         } catch (_error) {
           e = _error;
-          e.message.should.eql("Bad selector 'MOONBAT*MOONBAT'");
+          e.message.indexOf("Bad selector 'MOONBAT*MOONBAT'").should.eql(0);
         }
         try {
           return msg.translate({
@@ -35,7 +35,7 @@
           });
         } catch (_error) {
           e = _error;
-          return e.message.should.eql("Bad selector 'MOONBAT|MOONBAT'");
+          return e.message.indexOf("Bad selector 'MOONBAT|MOONBAT'").should.eql(0);
         }
       }
     },
