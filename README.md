@@ -25,7 +25,7 @@ And the javascript:
     kinStreets = message.query('NK1|4[0]') // ['123 FAKE ST', '122 FAKE ST']
 
     name = message.translate({
-      familyName: 'PID|5^0'
+      familyName: 'PID|5^0',
       firstName: 'PID|5^1'
     }) // { "familyName": "McTest", "firstName": "Test" }
 
