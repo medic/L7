@@ -1,4 +1,4 @@
-L7
+L7 [![Build Status](https://travis-ci.org/medic/L7.svg?branch=master)](https://travis-ci.org/medic/L7)
 ======
 
 A simple HL7 query language and message manipulator.
@@ -41,11 +41,6 @@ Installation
 ------------
 
     $ npm install L7
-
-Development
------------
-
-  * [Twitter](http://twitter.com/wombleton)
 
 Caveat
 ------
