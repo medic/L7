@@ -6,10 +6,6 @@
     "query",
     "server"
   ],
-  "author": {
-    "name": "Rowan Crawford",
-    "email": "wombleton@gmail.com"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/medic/L7"
