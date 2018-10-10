@@ -1,6 +1,7 @@
 {
   "name": "L7",
   "description": "An HL7 query language and message manipulator.",
+  "license": "Apache-2.0",
   "keywords": [
     "hl7",
     "query",
